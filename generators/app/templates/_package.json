@@ -1,10 +1,12 @@
 {
   "name": "starter-kit",
-  "version": "0.0.0",
+  "version": "0.0.``",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-connect": "~0.6.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-cssmin": "~0.7.0"
+    "browser-sync": "~2.7.6",
+    "gulp": "~3.8.11",
+    "gulp-sass": "~2.0.1",
+    "gulp-inject": "~1.2.0",
+    "gulp-load-plugins": "~0.10.0",
+    "main-bower-files": "~2.8.0"
   }
 }

@@ -36,7 +36,7 @@ var OnepageGenerator = yeoman.generators.Base.extend({
   },
   copyMainFiles: function() {
     this.copy("_footer.html", "app/footer.html");
-    this.copy("_gruntfile.js", "Gruntfile.js");
+    this.copy("_gulpfile.js", "gulpfile.js");
     this.copy("_package.json", "package.json");
     this.copy("_main.css", "app/css/main.css");
 
