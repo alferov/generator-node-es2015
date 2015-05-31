@@ -55,6 +55,13 @@ var OnepageGenerator = yeoman.generators.Base.extend({
       this.templatePath('_app.js'),
       this.destinationPath('app/assets/js/app.js')
     );
+  },
+  npm: function() {
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json')
+    );
+    this.npmInstall();
   }
 });
 
