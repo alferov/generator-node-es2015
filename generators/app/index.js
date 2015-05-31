@@ -20,26 +20,40 @@ var OnepageGenerator = yeoman.generators.Base.extend({
       ));
     }
 
-    // var prompts = [{
-    //   name: 'appName',
-    //   message: 'What is your app\'s name ?'
-    // }];
-    //
-    // this.prompt(prompts, function(props) {
-    //   this.appName = props.appName;
-    //   done();
-    // }.bind(this));
-
     done();
   },
   scaffoldFolders: function() {
     this.mkdir("app");
     this.mkdir("app/assets");
   },
-  copyFiles: function() {
+  copyProjectFiles: function() {
     this.fs.copyTpl(
       this.templatePath('_index.html'),
       this.destinationPath('index.html')
+    );
+  },
+  gulpfile: function() {
+    this.fs.copyTpl(
+      this.templatePath('_gulpfile.js'),
+      this.destinationPath('gulpfile.js')
+    );
+  },
+  bower: function() {
+    this.fs.copyTpl(
+      this.templatePath('_bower.json'),
+      this.destinationPath('bower.json')
+    );
+  },
+  styles: function() {
+    this.fs.copyTpl(
+      this.templatePath('_custom.scss'),
+      this.destinationPath('app/assets/scss/custom.scss')
+    );
+  },
+  scripts: function() {
+    this.fs.copyTpl(
+      this.templatePath('_app.js'),
+      this.destinationPath('app/assets/js/app.js')
     );
   }
 });
