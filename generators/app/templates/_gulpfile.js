@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var browserSync = require('browser-sync');
 var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
 var path = {
@@ -23,10 +24,10 @@ var path = {
 };
 
 gulp.task('process-styles', function() {
-  return gulp.src('assets/scss/custom.scss')
+  return gulp.src(path.sass + '/custom.scss')
     .pipe(plugins.plumber())
     .pipe(plugins.sass())
-    .pipe(gulp.dest(path.root));
+    .pipe(gulp.dest(path.distCss));
 });
 
 gulp.task('process-scripts',  function() {
@@ -76,4 +77,33 @@ gulp.task('styles', ['process-styles'], function() {
       relative: true,
     }))
     .pipe(gulp.dest(path.root));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(
+    [path.sass + '/**/*.scss'],
+    ['styles']
+  );
+
+  gulp.watch(
+    [path.js  + '/**/*.js'],
+    ['scripts']
+  );
+})
+
+gulp.task('browser-sync', function() {
+
+  var files = [
+    path.index,
+    path.distCss,
+    path.distJs
+  ];
+
+  browserSync.init(files, {
+    watchTask: true,
+    debugInfo: true,
+    server: path.root,
+    logConnections: true,
+    notify: true
+  });
 });
