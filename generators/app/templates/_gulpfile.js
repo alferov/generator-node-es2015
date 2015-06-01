@@ -3,7 +3,7 @@ var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
 var path = {
   index: 'index.html',
-  assets: 'assets',
+  assets: 'app/assets',
   root: '.',
   get sass() {
     return this.assets + '/scss'
@@ -23,16 +23,16 @@ var path = {
 };
 
 gulp.task('process-styles', function() {
-  return gulp.src(path.sass + '/custom.scss')
-  .pipe(plugins.plumber())
-  .pipe(plugins.sass())
-  .pipe(gulp.dest(path.distCss));
+  return gulp.src('assets/scss/custom.scss')
+    .pipe(plugins.plumber())
+    .pipe(plugins.sass())
+    .pipe(gulp.dest(path.root));
 });
 
 gulp.task('process-scripts',  function() {
   return gulp.src(path.js + '/**/*.js')
-  .pipe(plugins.concat('main.js'))
-  .pipe(gulp.dest(path.distJs));
+    .pipe(plugins.concat('main.js'))
+    .pipe(gulp.dest(path.distJs));
 });
 
 gulp.task('watch', function() {
