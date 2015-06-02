@@ -49,7 +49,7 @@ var OnepageGenerator = yeoman.generators.Base.extend({
        name: this.appname,
        private: true,
        dependencies: {
-         
+         'bootstrap-sass-official': '~3.3.4'
        }
      };
 

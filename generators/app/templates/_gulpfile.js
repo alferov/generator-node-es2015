@@ -3,9 +3,10 @@ var browserSync = require('browser-sync');
 var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
 var path = {
+  root: '.',
+  bower: 'bower_components',
   index: 'index.html',
   assets: 'app/assets',
-  root: '.',
   get sass() {
     return this.assets + '/scss'
   },
@@ -26,7 +27,11 @@ var path = {
 gulp.task('process-styles', function() {
   return gulp.src(path.sass + '/custom.scss')
     .pipe(plugins.plumber())
-    .pipe(plugins.sass())
+    .pipe(plugins.sass({
+      includePaths: [
+        path.bower + '/bootstrap-sass-official/assets/stylesheets',
+      ]
+    }))
     .pipe(gulp.dest(path.distCss));
 });
 
