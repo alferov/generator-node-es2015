@@ -39,10 +39,22 @@ var OnepageGenerator = yeoman.generators.Base.extend({
     );
   },
   bower: function() {
+
     this.fs.copyTpl(
-      this.templatePath('_bower.json'),
-      this.destinationPath('bower.json')
+      this.templatePath('bowerrc'),
+      this.destinationPath('.bowerrc')
     );
+
+    var bower = {
+       name: this.appname,
+       private: true,
+       dependencies: {
+         
+       }
+     };
+
+     this.write('bower.json', JSON.stringify(bower, null, 2));
+     this.bowerInstall();
   },
   styles: function() {
     this.fs.copyTpl(

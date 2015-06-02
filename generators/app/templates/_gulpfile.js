@@ -36,18 +36,6 @@ gulp.task('process-scripts',  function() {
     .pipe(gulp.dest(path.distJs));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(
-    [path.sass + '/**/*.scss'],
-    ['styles']
-  );
-
-  gulp.watch(
-    [path.js + '/**/*.js'],
-    ['styles']
-  );
-});
-
 gulp.task('vendors', function() {
   var vendors = gulp.src(mainBowerFiles());
 
@@ -89,10 +77,9 @@ gulp.task('watch', function() {
     [path.js  + '/**/*.js'],
     ['scripts']
   );
-})
+});
 
 gulp.task('browser-sync', function() {
-
   var files = [
     path.index,
     path.distCss,
@@ -106,4 +93,8 @@ gulp.task('browser-sync', function() {
     logConnections: true,
     notify: true
   });
+});
+
+gulp.task('default', ['vendors', 'scripts', 'styles', 'watch', 'browser-sync'], function() {
+
 });
