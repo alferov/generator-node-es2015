@@ -56,6 +56,12 @@ var OnepageGenerator = yeoman.generators.Base.extend({
      this.write('bower.json', JSON.stringify(bower, null, 2));
      this.bowerInstall();
   },
+  editorConfig: function () {
+    this.copy('editorconfig', '.editorconfig');
+  },
+  git: function () {
+    this.copy('gitignore', '.gitignore');
+  },
   styles: function() {
     this.fs.copyTpl(
       this.templatePath('_custom.scss'),
