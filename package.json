@@ -26,6 +26,9 @@
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "mocha": "*"
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.0",
+    "gulp-plumber": "^1.0.1",
+    "mocha": "^2.2.5"
   }
 }
