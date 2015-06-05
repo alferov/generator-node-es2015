@@ -2,27 +2,28 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
+var runSequence = require('run-sequence');
 var path = {
   root: 'app',
   bower: 'bower_components',
   get index() {
-    return this.root + '/index.html'
+    return this.root + '/index.html';
   },
   assets: 'app/assets',
   get sass() {
-    return this.assets + '/scss'
+    return this.assets + '/scss';
   },
   get js() {
-    return this.assets + '/js'
+    return this.assets + '/js';
   },
   get dist() {
-    return this.assets + '/dist'
+    return this.assets + '/dist';
   },
   get distCss() {
-    return this.dist + '/css'
+    return this.dist + '/css';
   },
   get distJs() {
-    return this.dist + '/js'
+    return this.dist + '/js';
   },
 };
 
@@ -102,6 +103,6 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('default', ['vendors', 'scripts', 'styles', 'watch', 'browser-sync'], function() {
-
+gulp.task('default', function(cb) {
+  runSequence('vendors', 'styles', 'scripts', 'watch', 'browser-sync', cb);
 });
