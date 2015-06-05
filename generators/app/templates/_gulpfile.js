@@ -3,9 +3,11 @@ var browserSync = require('browser-sync');
 var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
 var path = {
-  root: '.',
+  root: 'app',
   bower: 'bower_components',
-  index: 'index.html',
+  get index() {
+    return this.root + '/index.html'
+  },
   assets: 'app/assets',
   get sass() {
     return this.assets + '/scss'

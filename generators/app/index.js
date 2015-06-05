@@ -29,7 +29,7 @@ var OnepageGenerator = yeoman.generators.Base.extend({
   copyProjectFiles: function() {
     this.fs.copyTpl(
       this.templatePath('_index.html'),
-      this.destinationPath('index.html')
+      this.destinationPath('app/index.html')
     );
   },
   gulpfile: function() {
