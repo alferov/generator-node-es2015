@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var assert = require('yeoman-generator').assert;
+var assert = require('yeoman-assert');
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
@@ -13,12 +13,16 @@ describe('starter-pack:app', function () {
       .on('end', done);
   });
 
-  it('creates files', function () {
-    assert.file([
+  it('creates expected files', function () {
+    var expected = [
       'bower.json',
       'package.json',
-      '.editorconfig',
-      '.jshintrc'
-    ]);
+      'gulpfile.js',
+      'app/index.html',
+      'app/assets/scss/custom.scss'
+      'app/assets/js/app.js'
+    ];
+
+    assert.file(expected);
   });
 });
