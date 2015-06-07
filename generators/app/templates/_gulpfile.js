@@ -1,3 +1,5 @@
+/*jslint node: true */
+'use strict';
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var plugins = require('gulp-load-plugins')();
@@ -39,13 +41,15 @@ gulp.task('process-styles', function() {
 });
 
 gulp.task('process-scripts',  function() {
-  return gulp.src(path.js + '/**/*.js')
+  return gulp.src([path.js + '/**/*.js', '!' + path.js + '/vendors/**/*'])
     .pipe(plugins.concat('main.js'))
     .pipe(gulp.dest(path.distJs));
 });
 
 gulp.task('vendors', function() {
-  var vendors = gulp.src(mainBowerFiles());
+  var vendors = gulp
+  .src(mainBowerFiles('**/*.js'))
+  .pipe(gulp.dest(path.js + '/vendors'));
 
   return gulp.src(path.index)
     .pipe(plugins.inject(vendors, {
@@ -57,7 +61,7 @@ gulp.task('vendors', function() {
 
 gulp.task('scripts', ['process-scripts'], function() {
   var target = gulp.src(path.index);
-  var app = gulp.src(path.js + '/**/*.js');
+  var app = gulp.src([path.distJs + '/**/*.js']);
 
   return target.pipe(plugins.inject(app, {
       relative: true,
