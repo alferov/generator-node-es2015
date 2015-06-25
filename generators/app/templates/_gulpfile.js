@@ -1,6 +1,7 @@
 /*jslint node: true */
 'use strict';
 var gulp = require('gulp');
+var es = require('event-stream');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var plugins = require('gulp-load-plugins')();
@@ -52,21 +53,16 @@ gulp.task('styles', function() {
 
 gulp.task('inject', function() {
 
-  var css = gulp.src(path.distCss + '/*.css');
-  var js = gulp.src(path.distJs + '/*.js');
-  var vendors = gulp.src(mainBowerFiles('**/*.js'));
+  var css = gulp.src(path.distCss + '/*.css', { read: false });
+  var js = gulp.src(path.distJs + '/*.js', { read: false });
+  var vendors = gulp.src(mainBowerFiles(), { read: false });
 
   return gulp.src(path.index)
-    .pipe(plugins.inject(js, {
-      relative: true,
-    }))
     .pipe(plugins.inject(vendors, {
-      relative: true,
-      name: 'vendors'
+      name: 'vendors',
+      relative: true
     }))
-    .pipe(plugins.inject(css, {
-      relative: true,
-    }))
+    .pipe(plugins.inject(es.merge(css, js), { relative: true }))
     .pipe(gulp.dest(path.root))
     .pipe(reload({ stream: true }));
 });
@@ -97,7 +93,7 @@ gulp.task('serve', ['scripts', 'styles', 'inject'], function() {
 
   gulp.watch(
     [path.root + '/*.html'],
-    ['inject']
+    reload
   );
 });
 
