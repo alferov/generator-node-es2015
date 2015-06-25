@@ -128,7 +128,7 @@ var OnepageGenerator = yeoman.generators.Base.extend({
       this.templatePath('_package.json'),
       this.destinationPath('package.json')
     );
-    // this.npmInstall();
+    this.npmInstall();
   }
 });
 
