@@ -5,7 +5,6 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var plugins = require('gulp-load-plugins')();
 var mainBowerFiles = require('main-bower-files');
-var runSequence = require('run-sequence');
 
 var path = {
   root: 'app',
@@ -21,7 +20,7 @@ var path = {
     return this.assets + '/js';
   },
   get dist() {
-    return 'dist';
+    return this.root + '/dist';
   },
   get distCss() {
     return this.dist + '/css';
@@ -31,18 +30,11 @@ var path = {
   }
 };
 
-gulp.task('vendors', function() {
-
-  return gulp.src(mainBowerFiles('**/*.js'))
-    .pipe(plugins.concat('vendors.js'))
-    .pipe(gulp.dest(path.distJs + '/vendors'));
-});
-
 gulp.task('scripts', function() {
   return gulp.src(path.js + '/**/*.js')
     .pipe(plugins.concat('main.js'))
     .pipe(gulp.dest(path.distJs))
-    .pipe(reload({once: true, stream: true}));
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('styles', function() {
@@ -55,19 +47,16 @@ gulp.task('styles', function() {
       ]
     }))
     .pipe(gulp.dest(path.distCss))
-    .pipe(reload({once: true, stream: true}));
+    .pipe(reload({ stream: true }));
 });
 
-gulp.task('templates', function() {
+gulp.task('inject', function() {
 
   var css = gulp.src(path.distCss + '/*.css');
   var js = gulp.src(path.distJs + '/*.js');
-  var vendors = gulp.src(path.distJs + '/vendors/*.js');
+  var vendors = gulp.src(mainBowerFiles('**/*.js'));
 
-  var target = gulp.src(path.index)
-    .pipe(gulp.dest(path.dist));
-
-  return target
+  return gulp.src(path.index)
     .pipe(plugins.inject(js, {
       relative: true,
     }))
@@ -78,15 +67,20 @@ gulp.task('templates', function() {
     .pipe(plugins.inject(css, {
       relative: true,
     }))
-    .pipe(gulp.dest(path.dist))
-    .pipe(reload({once: true, stream: true}));
+    .pipe(gulp.dest(path.root))
+    .pipe(reload({ stream: true }));
 });
 
-gulp.task('serve', ['vendors', 'scripts', 'styles'], function() {
+gulp.task('serve', ['scripts', 'styles', 'inject'], function() {
   browserSync.init({
     watchTask: true,
     debugInfo: true,
-    server: path.dist,
+    server: {
+        baseDir: "app",
+        routes: {
+            "/bower_components": "bower_components"
+        }
+    },
     logConnections: true,
     notify: true
   });
@@ -102,8 +96,8 @@ gulp.task('serve', ['vendors', 'scripts', 'styles'], function() {
   );
 
   gulp.watch(
-    [path.root  + '/**/*.html'],
-    ['templates']
+    [path.root + '/*.html'],
+    ['inject']
   );
 });
 

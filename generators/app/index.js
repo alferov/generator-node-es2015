@@ -1,6 +1,4 @@
 'use strict';
-var util = require('util');
-var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
@@ -22,62 +20,61 @@ var OnepageGenerator = yeoman.generators.Base.extend({
 
     done();
   },
-  askFor: function() {
-
-    var done = this.async();
-
-    if (!this.options['skip-welcome-message']) {
-      this.log(require('yosay')());
-      this.log(chalk.magenta(
-        'Out of the box I include Gulp, Browser Sync, Sass' +
-        'Main Bower Files to include all bower dependencies to build your app.'
-      ));
-    }
-
-    var prompts = [{
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: [{
-        name: 'Sass',
-        value: 'includeSass',
-        checked: true
-      }, {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: true
-      }, {
-        name: 'Modernizr',
-        value: 'includeModernizr',
-        checked: true
-      }]
-    }, {
-      type: 'confirm',
-      name: 'includeJQuery',
-      message: 'Would you like to include jQuery?',
-      default: true,
-      when: function (answers) {
-        return answers.features.indexOf('includeBootstrap') === -1;
-      }
-    }];
-
-    this.prompt(prompts, function (answers) {
-      var features = answers.features;
-
-      var hasFeature = function (feat) {
-        return features.indexOf(feat) !== -1;
-      };
-
-      // manually deal with the response, get back and store the results.
-      // we change a bit this way of doing to automatically do this in the self.prompt() method.
-      this.includeSass = hasFeature('includeSass');
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeModernizr = hasFeature('includeModernizr');
-      this.includeJQuery = answers.includeJQuery;
-
-      done();
-    }.bind(this));
-  },
+  // askFor: function() {
+  //   var done = this.async();
+  //
+  //   if (!this.options['skip-welcome-message']) {
+  //     this.log(require('yosay')());
+  //     this.log(chalk.magenta(
+  //       'Out of the box I include Gulp, Browser Sync, Sass' +
+  //       'Main Bower Files to include all bower dependencies to build your app.'
+  //     ));
+  //   }
+  //
+  //   var prompts = [{
+  //     type: 'checkbox',
+  //     name: 'features',
+  //     message: 'What more would you like?',
+  //     choices: [{
+  //       name: 'Sass',
+  //       value: 'includeSass',
+  //       checked: true
+  //     }, {
+  //       name: 'Bootstrap',
+  //       value: 'includeBootstrap',
+  //       checked: true
+  //     }, {
+  //       name: 'Modernizr',
+  //       value: 'includeModernizr',
+  //       checked: true
+  //     }]
+  //   }, {
+  //     type: 'confirm',
+  //     name: 'includeJQuery',
+  //     message: 'Would you like to include jQuery?',
+  //     default: true,
+  //     when: function (answers) {
+  //       return answers.features.indexOf('includeBootstrap') === -1;
+  //     }
+  //   }];
+  //
+  //   this.prompt(prompts, function (answers) {
+  //     var features = answers.features;
+  //
+  //     var hasFeature = function (feat) {
+  //       return features.indexOf(feat) !== -1;
+  //     };
+  //
+  //     // manually deal with the response, get back and store the results.
+  //     // we change a bit this way of doing to automatically do this in the self.prompt() method.
+  //     this.includeSass = hasFeature('includeSass');
+  //     this.includeBootstrap = hasFeature('includeBootstrap');
+  //     this.includeModernizr = hasFeature('includeModernizr');
+  //     this.includeJQuery = answers.includeJQuery;
+  //
+  //     done();
+  //   }.bind(this));
+  // },
   copyProjectFiles: function() {
     this.fs.copyTpl(
       this.templatePath('_index.html'),
@@ -131,7 +128,7 @@ var OnepageGenerator = yeoman.generators.Base.extend({
       this.templatePath('_package.json'),
       this.destinationPath('package.json')
     );
-    this.npmInstall();
+    // this.npmInstall();
   }
 });
 
