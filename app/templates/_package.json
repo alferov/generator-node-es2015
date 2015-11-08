@@ -1,0 +1,44 @@
+{
+  "name": "<%= moduleName %>",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/module.js",
+  "scripts": {
+    "postinstall": "npm run build",
+    "precommit": "npm test && npm run build",
+    "build": "rimraf dist && webpack",
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha",
+    "coveralls": "npm run coverage && coveralls < coverage/lcov.info",
+    "test": "mocha --recursive --compilers js:babel-core/register --reporter nyan",
+    "tdd": "npm test -- --watch"
+  },
+  "repository": "<%= username %>/<%= moduleName %>",
+  "keywords": [
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "babel": "^5.8.3",
+    "babel-core": "^5.8.3",
+    "babel-loader": "^5.3.3",
+    "chai": "^3.2.0",
+    "coveralls": "^2.11.4",
+    "eslint": "^1.4.1",
+    "husky": "^0.10.1",
+    "isparta": "^3.5.1",
+    "mocha": "^2.3.3",
+    "rimraf": "^2.4.3",
+    "webpack": "^1.12.2"
+  },
+  "author": {
+    "name": "<%= name %>",
+    "email": "<%= email %>"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

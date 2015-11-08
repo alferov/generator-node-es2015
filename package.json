@@ -1,35 +1,37 @@
 {
-  "name": "generator-starter-pack",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "name": "generator-node-es2015",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for creating ES2015 JavaScript modules with legacy support using Babel, Webpack, Mocha, Chai, Isparta, ESLint",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "alferov/generator-starter-pack",
+  "repository": "alferov/generator-ujsm",
   "author": {
     "name": "Philipp Alferov",
-    "email": "",
+    "email": "philipp.alferov@gmail.com",
     "url": "https://github.com/alferov"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "tdd": "npm run test -- --watch --recursive",
+    "release": "npm version ${BUMP:-\"patch\"} --no-git-tag-version && git add package.json && git commit -m \":octocat: Bump to $(cat package.json | jq -r .version)\" && git tag $(cat package.json | jq -r .version) && git push && git push --tags && npm publish"
   },
   "files": [
-    "generators"
+    "test",
+    "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "es2015",
+    "boilerplate"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
-    "underscore.string": "^3.0.3",
-    "yeoman-generator": "^0.19.0",
-    "yeoman-assert": "^2.0.0",
+    "underscore.string": "^3.2.2",
+    "yeoman-generator": "^0.21.1",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-mocha": "^2.1.0",
-    "gulp-plumber": "^1.0.1",
-    "mocha": "^2.2.5"
+    "eslint": "^1.4.1",
+    "mocha": "*"
   }
 }

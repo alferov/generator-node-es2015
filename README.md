@@ -1,47 +1,34 @@
-# generator-starter-pack [![Build Status](https://secure.travis-ci.org/alferov/generator-starter-pack.png?branch=master)](https://travis-ci.org/alferov/generator-starter-pack)
+# generator-node-es2015
 
-> [Yeoman](http://yeoman.io) generator
+> A Yeoman generator for creating ES2015 JavaScript modules with legacy support using Babel, Webpack, Mocha, Chai, Isparta, ESLint
 
+## Features
+1. **ES2015** - generator-node-es2015 uses Babel to transpile ES2015 source code.
+There are several reasons to use ES2015 alongside with transpilation:
+  - The transpiled code will work with legacy Node versions;
+  - Seamless migration after you decide to drop 0.x.x support;
+1. **ES2015 Tests** - Mocha flag `--compilers js:babel-core/register` (it's already preconfigured in the npm `test` script) allows to transpile Mocha tests written with ES2015 on the fly.
+1. **TDD** - The package has a particular npm script `npm run tdd` to start a Mocha watch task that reruns tests on file changes.
+1. **Git Hooks** - Every time before commiting, [husky](https://github.com/typicode/husky) runs npm tasks conveniently configured in the package.json (in this case it automatically starting both `test` and `build` tasks). You can temporary disable this feature by adding `--no-verify` flag (i.e `$ git commit -am "Beep bop" --no-verify`). The list of all available hooks can be found [here](https://github.com/typicode/husky/blob/master/hooks.json).
 
-## Getting Started
-
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
+## Installation
 ```bash
-npm install -g yo
+# Install Yeoman and the UJSM generator globally
+$ npm install -g yo generator-node-es2015
+
+# Make a new folder & open it
+$ mkdir my-shiny-module && cd $_
+
+# Run the generator
+$ yo node-es2015
 ```
 
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-starter-pack from npm, run:
-
-```bash
-npm install -g generator-starter-pack
-```
-
-Finally, initiate the generator:
-
-```bash
-yo starter-pack
-```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+## Workflow
+- `npm run build` - Build task that generates both minified and non-minified scripts;
+- `npm run test` - Run Mocha tests once;
+- `npm run tdd` - Run Mocha tests & watch files for changes;
+- `npm run tdd-browser` - Run Karma (w/ Mocha) tests & watch files for changes;
+- `npm run coverage` - Run Isparta, a code coverage tool;
 
 ## License
-
-MIT
+MIT © [Philipp Alferov](https://github.com/alferov)
