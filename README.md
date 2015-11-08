@@ -27,7 +27,6 @@ $ yo node-es2015
 - `npm run build` - Build task that generates both minified and non-minified scripts;
 - `npm run test` - Run Mocha tests once;
 - `npm run tdd` - Run Mocha tests & watch files for changes;
-- `npm run tdd-browser` - Run Karma (w/ Mocha) tests & watch files for changes;
 - `npm run coverage` - Run Isparta, a code coverage tool;
 
 ## License
