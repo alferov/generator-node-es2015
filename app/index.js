@@ -12,10 +12,10 @@ module.exports = yeoman.generators.Base.extend({
 
     this.log(yosay([
       'Welcome to the',
-      chalk.red('Universal JavaScript Module'),
-      'generator! UJSM leverages the following superpowers:',
-      chalk.yellow('ES2015, Babel, Webpack, Mocha,'),
-      chalk.yellow('Chai, Karma, Isparta, ESLint')
+      chalk.red('ES2015 JavaScript Module'),
+      'generator! The generator uses',
+      chalk.yellow('Babel, Webpack, Mocha, Chai, Isparta, ESLint'),
+      ('to provide backwards compatibility with older Node versions')
     ].join(' ')));
 
     var prompts = [{
