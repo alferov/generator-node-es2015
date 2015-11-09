@@ -9,7 +9,7 @@
     "coverage": "babel-node node_modules/isparta/bin/isparta cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info && rimraf coverage",
     "test": "mocha --recursive --compilers js:babel-core/register",
-    "tdd": "npm test -- --watch",
+    "tdd": "npm test -- --watch"
   },
   "repository": "<%= username %>/<%= moduleName %>",
   "keywords": [
