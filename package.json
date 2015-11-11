@@ -4,7 +4,7 @@
   "description": "A Yeoman generator for creating ES2015 JavaScript modules with legacy support using Babel, Webpack, Mocha, Chai, Isparta, ESLint",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "alferov/generator-ujsm",
+  "repository": "alferov/generator-node-es2015",
   "author": {
     "name": "Philipp Alferov",
     "email": "philipp.alferov@gmail.com",
