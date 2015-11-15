@@ -13,7 +13,7 @@ There are several reasons to use ES2015 alongside with transpilation:
 
 ## Installation
 ```bash
-# Install Yeoman and the UJSM generator globally
+# Install Yeoman and the generator globally
 $ npm install -g yo generator-node-es2015
 
 # Make a new folder & open it
