@@ -1,6 +1,6 @@
 {
   "name": "generator-node-es2015",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Yeoman generator for creating ES2015 JavaScript modules with legacy support using Babel, Webpack, Mocha, Chai, Isparta, ESLint",
   "license": "MIT",
   "main": "app/index.js",
