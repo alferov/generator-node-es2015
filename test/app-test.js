@@ -19,6 +19,7 @@ describe('ujsm:app', function () {
   it('creates files', function () {
     assert.file([
       'package.json',
+      '.babelrc',
       '.eslintrc',
       'readme.md',
       '.travis.yml',

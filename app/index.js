@@ -54,6 +54,7 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(this.templatePath() + '/**', this.destinationPath(), props);
 
     mv('_package.json', 'package.json');
+    mv('babelrc', '.babelrc');
     mv('editorconfig', '.editorconfig');
     mv('eslintrc', '.eslintrc');
     mv('gitignore', '.gitignore');
