@@ -13,7 +13,7 @@
   "scripts": {
     "test": "mocha",
     "tdd": "npm run test -- --watch --recursive",
-    "release": "npm version ${BUMP:-\"patch\"} --no-git-tag-version && git add package.json && git commit -m \":octocat: Bump to $(cat package.json | jq -r .version)\" && git tag $(cat package.json | jq -r .version) && git push && git push --tags && npm publish"
+    "release": "npm version ${BUMP:-\"patch\"} --no-git-tag-version && git add package.json && git commit -m \":octocat: Bump to $(cat package.json | json version)\" && git tag $(cat package.json | json version) && git push && git push --tags && npm publish"
   },
   "files": [
     "test",
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "eslint": "^1.4.1",
+    "json": "^9.0.4",
     "mocha": "*"
   }
 }
